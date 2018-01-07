@@ -1,0 +1,22 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+.inital-page{
+    background-color: black;
+}
+@keyframes stardeath{
+    from{
+        background-position-x: 0;
+    }
+    to{
+        background-position-x: 360px;
+    }
+}
+.inital-page .stardeath{
+   display: flex;
+   justify-content: center;
+   border-radius: 50%;
+   animation: stardeath 8s linear infinite;
+}
+
