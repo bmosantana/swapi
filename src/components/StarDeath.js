@@ -3,16 +3,14 @@ import stardeath from '../images/stardeath.png';
 
 
 
-export default class Home extends Component {
+export default class StarDeath extends Component {
     constructor(props) {
         super(props)
     }
 
     render() {
         return (
-            <div className="stardeath">
-                <img src={stardeath} height="150px" width="150px" />
-            </div>
+            <a href="#" className="link-pages"> <img src={stardeath} className="stardeath" height="150px" width="150px" /> </a>
         );
     }
 }
