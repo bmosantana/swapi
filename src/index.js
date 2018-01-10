@@ -17,7 +17,7 @@ ReactDOM.render(
     <MuiThemeProvider>
         <Router history={history}>
             <Switch>
-                <Route path="/home" component={Home}/>
+                <Route exact path="/" component={Home}/>
                 <Route path="/planetas" component={ListaPlanetas}/>
                 <Route path="/personagens" component={ListaPersonagens}/>
             </Switch>
