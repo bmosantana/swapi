@@ -11,92 +11,7 @@ import {
 import world from '../images/world.png';
 import ModalPlaneta from './ModalPlaneta';
 
-const tableData = [
-    {
-        name: 'John Smith',
-        status: 'Employed',
-    },
-    {
-        name: 'Randal White',
-        status: 'Unemployed',
-    },
-    {
-        name: 'Stephanie Sanders',
-        status: 'Employed',
-    },
-    {
-        name: 'Steve Brown',
-        status: 'Employed',
-    },
-    {
-        name: 'Joyce Whitten',
-        status: 'Employed',
-    },
-    {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    }, {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    },
-];
+var endereco = "https://swapi.co/api/planets/?page=1";
 
 class ListaPlanetas extends Component {
     constructor(props) {
@@ -115,13 +30,42 @@ class ListaPlanetas extends Component {
             width: '100%',
 
             modalState: false,
-            open: false
+            open: false,
+            resultado: { results: [] },
         };
+        // this.next = this.next.bind(this)
     }
 
     handleModalPlaneta = () => {
         console.log(this.state.modalState)
         this.setState({ modalState: !this.state.modalState });
+    }
+
+    next = () => {
+        if (this.state.resultado.next !== null){
+            endereco = this.state.resultado.next
+            this.busca()
+        }
+    }
+
+    componentWillMount() {
+       this.busca()
+    }
+
+    busca = () => {
+        fetch(endereco, {
+            method: 'GET',
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            })
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((result) => {
+                this.setState({ resultado: result })
+            })
     }
 
     render() {
@@ -156,11 +100,11 @@ class ListaPlanetas extends Component {
                             showRowHover={this.state.showRowHover}
                             stripedRows={this.state.stripedRows}
                         >
-                            {tableData.map((row, index) => (
+                            {this.state.resultado.results.map((row, index) => (
                                 <TableRow key={index}>
                                     <TableRowColumn>{index}</TableRowColumn>
                                     <TableRowColumn>{row.name}</TableRowColumn>
-                                    <TableRowColumn>{row.status}</TableRowColumn>
+                                    <TableRowColumn>{row.population}</TableRowColumn>
                                     <TableRowColumn>
                                         <button className="button-view-planet"
                                             onClick={
@@ -174,7 +118,10 @@ class ListaPlanetas extends Component {
                         </TableBody>
 
                     </Table>
-                <ModalPlaneta click={this.handleModalPlaneta} modalState={this.state.modalState}></ModalPlaneta>
+                    <ModalPlaneta click={this.handleModalPlaneta} modalState={this.state.modalState}></ModalPlaneta>
+                </div>
+                <div>
+                    <button onClick={this.next}>></button>
                 </div>
             </div>
         );
