@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
 import world from '../images/world.png';
+import texture from '../images/texture.png';
 import ModalPlaneta from './ModalPlaneta';
 
 var endereco = "https://swapi.co/api/planets/?page=1";
+
+const style = {
+    margin: 12,
+};
 
 class ListaPlanetas extends Component {
     constructor(props) {
@@ -33,7 +30,7 @@ class ListaPlanetas extends Component {
             open: false,
             resultado: { results: [] },
         };
-        // this.next = this.next.bind(this)
+        // this.next = this.next.bind(this)    
     }
 
     handleModalPlaneta = () => {
@@ -42,17 +39,28 @@ class ListaPlanetas extends Component {
     }
 
     next = () => {
-        if (this.state.resultado.next !== null){
+        if (this.state.resultado.next !== null) {
             endereco = this.state.resultado.next
-            this.busca()
+            this.handleBusca()
+        }else{
+            alert("Infelizmente não há uma próxima página!");
+        }
+    }
+
+    previous = () => {
+        if (this.state.resultado.previous !== null) {
+            endereco = this.state.resultado.previous
+            this.handleBusca()
+        }else{
+            alert("Infelizmente não há páginas anteriores!");
         }
     }
 
     componentWillMount() {
-       this.busca()
+        this.handleBusca()
     }
 
-    busca = () => {
+    handleBusca = () => {
         fetch(endereco, {
             method: 'GET',
             headers: new Headers({
@@ -65,6 +73,7 @@ class ListaPlanetas extends Component {
             })
             .then((result) => {
                 this.setState({ resultado: result })
+                console.log(result)
             })
     }
 
@@ -73,55 +82,31 @@ class ListaPlanetas extends Component {
             <div>
                 <Menu />
                 <div className="box-content">
-                    <Table
-                        className="table-body-config"
-                        height={this.state.height}
-                        fixedHeader={this.state.fixedHeader}
-                        fixedFooter={this.state.fixedFooter}
-                        selectable={this.state.selectable}
-                        multiSelectable={this.state.multiSelectable}
+                    <div className="position-planets">
+                        {this.state.resultado.results.map((row, index) => (
+                            <div className="list-planets">
+                                <div className="plan-det"
+                                    onClick={
+                                        this.handleModalPlaneta
+                                    }>
+                                    <div className="planet">
+                                        <span className="radius"></span>
+                                        <span className="texture">
+                                            <img src={texture} />
+                                        </span>
+                                    </div>
+                                    <p className="font-description">Nome: <span className="graph">{row.name}</span>  </p>
+                                    <p className="font-description">População: <span className="graph">{row.population}</span>  </p>
+                                </div>
+                            </div>
+                        ))}
+                        <ModalPlaneta planeta={this.state.resultado.results} click={this.handleModalPlaneta} modalState={this.state.modalState}></ModalPlaneta>
+                        <div id="btns">
+                            <button className="btn-np" id="btn-ant" onClick={this.previous}>Anterior</button>
+                            <button className="btn-np" onClick={this.next}>Próximo</button>
+                        </div>
 
-                    >
-                        <TableHeader
-                            displaySelectAll={this.state.showCheckboxes}
-                            adjustForCheckbox={this.state.showCheckboxes}
-                            enableSelectAll={this.state.enableSelectAll}
-                        >
-                            <TableRow >
-                                <TableHeaderColumn tooltip="ID">ID</TableHeaderColumn>
-                                <TableHeaderColumn tooltip="Nome">Name</TableHeaderColumn>
-                                <TableHeaderColumn tooltip="População">População</TableHeaderColumn>
-                                <TableHeaderColumn tooltip="Clique aqui para ver mais informações">Ações</TableHeaderColumn>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody
-                            displayRowCheckbox={this.state.showCheckboxes}
-                            deselectOnClickaway={this.state.deselectOnClickaway}
-                            showRowHover={this.state.showRowHover}
-                            stripedRows={this.state.stripedRows}
-                        >
-                            {this.state.resultado.results.map((row, index) => (
-                                <TableRow key={index}>
-                                    <TableRowColumn>{index}</TableRowColumn>
-                                    <TableRowColumn>{row.name}</TableRowColumn>
-                                    <TableRowColumn>{row.population}</TableRowColumn>
-                                    <TableRowColumn>
-                                        <button className="button-view-planet"
-                                            onClick={
-                                                this.handleModalPlaneta
-                                            }>
-                                            <img src={world} />
-                                        </button>
-                                    </TableRowColumn>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-
-                    </Table>
-                    <ModalPlaneta click={this.handleModalPlaneta} modalState={this.state.modalState}></ModalPlaneta>
-                </div>
-                <div>
-                    <button onClick={this.next}>></button>
+                    </div>
                 </div>
             </div>
         );
