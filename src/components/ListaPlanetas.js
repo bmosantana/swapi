@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
-import world from '../images/world.png';
 import texture from '../images/texture.png';
 import ModalPlaneta from './ModalPlaneta';
 
 var endereco = "https://swapi.co/api/planets/?page=1";
 
-const style = {
-    margin: 12,
-};
 
 class ListaPlanetas extends Component {
     constructor(props) {
