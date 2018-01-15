@@ -10,7 +10,6 @@ class ModalPlaneta extends Component {
         this.state = {
             open: false,
             modalState: false,
-            resultado: { result: [] },
         }
     }
 
@@ -38,7 +37,7 @@ class ModalPlaneta extends Component {
                     }
                 >
                     <div className="modal-plan">
-                        <div className="info-planet">
+                        <div className="info-planet-person">
                             <h2>{this.props.planeta.name}</h2>
                             <p>População:<span>{this.props.planeta.population}</span></p>
                             <p>Diâmetro:<span>{this.props.planeta.diameter}</span></p>
@@ -53,6 +52,8 @@ class ModalPlaneta extends Component {
                                     </table>
                                 </span>
                             </p>
+
+
                         </div>
                     </div>
                 </Dialog>

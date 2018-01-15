@@ -13,7 +13,8 @@ body{
     background:rgba(255, 255, 0, 0.836);
     padding: 10px;
     margin: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Courier New, Courier, monospace;
+    font-size: 16pt;
     
 }
 
@@ -22,13 +23,12 @@ body{
     padding:10px 22px;
     color:black;
     text-decoration:none;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
 }
 
 #nav li a:hover {
    border-color: black;
   
-   
 }
 
 .table-style{
@@ -112,10 +112,7 @@ body{
     height: 100%;
 }
 
-.position-persons{
-    margin-left: 20%;
-    margin-right: 20%;
-}
+
 
 .font-description{
     font-size: 12pt;
@@ -124,12 +121,19 @@ body{
 
 }
 
-.font-description .font-person span.graph{
+.font-description  span.graph{
     color: black;
+    
+}
+
+.graph{
+    font-family: Courier New, Courier, monospace!important;
+    font-size: 12pt;
+    color: black!important;
 }
 
 p span.graph{
-    color: white;
+    color: white!important;
     font-size: 12pt;
     font-family: Courier New, Courier, monospace;
 }
@@ -146,12 +150,12 @@ p span.graph{
     height: 30px;
     width: 100px;
     font-size: 12pt;
-    font-family: Arial, Helvetica, sans-serif;
     border: 3px solid rgba(255, 255, 0, 0.836);
     background-color: transparent;
     color:white;
     margin-right: 1%;
     cursor: pointer;
+    font-family: Courier New, Courier, monospace;
 }
 
 .btn-np:hover{
@@ -168,6 +172,7 @@ p span.graph{
     color: black!important;
     border-color: black;
     background-color: rgba(255, 255, 0, 0.836)!important;
+    font-size: 16pt!important;
 }
 
 #btn-ok:hover{
@@ -184,9 +189,18 @@ p span.graph{
     background-color: black!important;
 }
 
-.info-planet{
-    width: 50%;
+.info-planet-person{
+    width: 100%;
     height: 100%;
+    color: black!important;
+    font-family: Courier New, Courier, monospace;
+}
+
+.info-planet-person h2 {
+    font-size: 20pt;
+}
+.info-planet-person span{
+    margin-left: 4px;
 }
 
 .planet-v{
@@ -202,4 +216,9 @@ p span.graph{
     font-size: 20pt;
     color: black;
     font-family: Courier New, Courier, monospace;
+    display: flex;
+    justify-content: center;
+    scroll-behavior: initial;
+    scroll-snap-points-x: initial;
 }
+
