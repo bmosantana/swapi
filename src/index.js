@@ -7,7 +7,6 @@ import {Router, Route, Switch} from 'react-router';
 import createbrowserhistory from 'history/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //
-import Home from './components/Home.js';
 import ListaPlanetas from './components/ListaPlanetas.js';
 import ListaPersonagens from './components/ListaPersonagens.js';
 
@@ -17,8 +16,7 @@ ReactDOM.render(
     <MuiThemeProvider>
         <Router history={history}>
             <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/planetas" component={ListaPlanetas}/>
+                <Route exact path="/" component={ListaPlanetas}/>
                 <Route path="/personagens" component={ListaPersonagens}/>
             </Switch>
         </Router>
