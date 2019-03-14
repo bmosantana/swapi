@@ -222,3 +222,11 @@ p span.graph{
     scroll-snap-points-x: initial;
 }
 
+.imagem{
+    width: 950px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    flex-grow: 2;
+}

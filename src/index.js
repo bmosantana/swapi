@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //
 import ListaPlanetas from './components/ListaPlanetas.js';
 import ListaPersonagens from './components/ListaPersonagens.js';
+import Home from './components/Home.js';
 
 const history= createbrowserhistory();
 
@@ -18,6 +19,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/" component={ListaPlanetas}/>
                 <Route path="/personagens" component={ListaPersonagens}/>
+                <Route path="/home" component={Home}/>
             </Switch>
         </Router>
     </MuiThemeProvider>
