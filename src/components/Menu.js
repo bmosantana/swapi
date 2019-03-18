@@ -7,8 +7,8 @@ class Menu extends Component {
             <div>
                 <div>
                     <ul id="nav">
-                        <li><a href="/home">Inicio </a></li>
-                        <li><a href="/">Planetas</a></li>
+                        <li><a href="/">Inicio </a></li>
+                        <li><a href="/planetas">Planetas</a></li>
                         <li><a href="/personagens">Personagens</a></li>
                     </ul>
                 </div>

@@ -13,9 +13,9 @@ body{
     background:rgba(255, 255, 0, 0.836);
     padding: 10px;
     margin: 0px;
+    margin-top: 0px;
     font-family: Courier New, Courier, monospace;
     font-size: 16pt;
-    
 }
 
 #nav li a {
@@ -229,4 +229,11 @@ p span.graph{
     flex-direction: column;
     flex-flow: column;
     flex-grow: 2;
+}
+
+.imagem{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
